@@ -3,20 +3,15 @@ const server = require('http').Server(app);
 const cors = require('cors');
 
 const io = require('socket.io')(server, {
-  origin: '*',
-  methods: ['GET', 'POST'],
+  cors: { origin: '*', methods: ['GET', 'POST'] },
 });
 
 app.use(cors());
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 9000;
 
 app.get('/', (req, res) => {
   res.send('Server is running');
-});
-
-server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
 });
 
 io.on('connection', (socket) => {
@@ -33,4 +28,8 @@ io.on('connection', (socket) => {
   socket.on('answercall', (data) => {
     io.to(data.to).emit('callaccepted', data.signal);
   });
+});
+
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
