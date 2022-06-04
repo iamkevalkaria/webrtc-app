@@ -5,3 +5,6 @@ config/default.json
 .env
 
 testing/
+
+node_modules/
+build/
