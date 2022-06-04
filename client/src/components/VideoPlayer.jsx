@@ -57,7 +57,6 @@ const VideoPlayer = () => {
             </Typography>
             <video
               playsInline
-              muted
               ref={userVideo}
               autoPlay
               className={classes.video}
